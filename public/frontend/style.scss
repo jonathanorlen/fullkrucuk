@@ -1,0 +1,28 @@
+body{
+	overflow-x: hidden;
+}
+
+.card-image{
+     background-color: red;
+	  width: 100%;
+	  border-radius:8px;
+  	padding-top: 50%; /* 1:1 Aspect Ratio */
+  	position: relative; /* If you want text inside of it */
+}
+
+.card-content{
+	.card-tit{
+		font-size:20px;
+		margin-top:4px;
+		font-weight:700;
+	}
+
+	.card-place{
+		font-size:16px;
+		margin-top: 4px;
+	}
+
+	.card-category{
+		font-size:16px;
+	}
+}
