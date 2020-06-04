@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap');
+
+body {
+  overflow-x: hidden;
+  font-family: 'Lato', sans-serif;
+}
+
+.image-35{
+  width: 100%;
+  padding-top: 35%;
+  position: relative;
+  background-size: cover;
+}
+.card-image {
+  background-color: grey;
+  width: 100%;
+  border-radius: 0.5rem;
+  padding-top: 50%;
+  /* 1:1 Aspect Ratio */
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  /* If you want text inside of it */
+}
+
+.card-content {
+  margin-bottom: 2.125rem;
+  color: #0F0F0F;
+}
+
+.card-content:hover {
+  text-decoration:none;
+  color: #0F0F0F;
+}
+
+.card-tit {
+  font-size: 1.25rem;
+  margin-top: 0.25rem;
+  font-weight: 700;
+}
+
+.card-place {
+  font-size: 1rem;
+  color:#A0A3A6;
+}
+
+.card-detail-category {
+  font-size: 1rem;
+  color:#A0A3A6;
+}
+
+.header-section{
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #0F0F0F
+}
+
+.subheader-section{
+  font-size: 1rem;
+  color:#A0A3A6;
+  margin-bottom: 1.25rem
+}
+
+.btn-signup{
+  border-radius: 100px !important;
+  background-color: #F96240;
+  border: #F96240;  
+  color: white;
+  font-weight: bold;
+  font-size: 1.125rem
+}
+
+.btn-signup:hover{
+  background-color: #E7583A;
+  color: white;
+}
+
+.btn-login{
+  border-radius: 100px !important;
+  background-color: white;
+  color: black;
+  font-weight: bold;
+  font-size: 1.125rem
+}
+
+.btn-login:hover{
+  background-color: #F96240;
+  color: white;
+}
+
+.search-form{
+  border-radius:8px;
+  background-color: #F2F1F2;
+  border:0px solid white !important;
+  height: 2.75rem;
+  text-align: center;
+  font-size: 1.125rem
+}
+/*# sourceMappingURL=style.css.map */
+
+.card-category{
+  width: 100%;
+  border-radius: 0.5rem;
+  padding-top: 35%;
+  /* 1:1 Aspect Ratio */
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  text-align:center;
+  color: white;
+  font-size:1.25rem;
+  /* If you want text inside of it */
+}
+
+.opening-day{
+  color:#A0A3A6;
+  font-size: 16 rem;
+}
+
+.opening-hour{
+  color:#0F0F0F;
+  font-size: 16 rem;
+}
