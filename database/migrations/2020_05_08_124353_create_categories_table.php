@@ -17,7 +17,7 @@ class CreateCategoriesTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('slug');
-            $table->string('cover');
+            $table->string('cover')->nullable();
             $table->enum('status', ['1', '0'])->nullable()->default('1');
             $table->timestamps();
             $table->softDeletes();

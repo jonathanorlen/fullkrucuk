@@ -64,7 +64,7 @@
                                             </td>
                                             <td>
                                                 <a href="{{route('banner.edit',$banner->id)}}" class="btn btn-info"><i class="fa fa-pencil-alt"></i></a>
-                                                <form action="{{route('category.destroy',$banner->id)}}" method="post" class="d-inline">
+                                                <form action="{{route('banner.destroy',$banner->id)}}" method="post" class="d-inline">
                                                     @csrf
                                                     @method('delete')
                                                     <button type="submit" class="btn btn-danger" onclick="return confirm('Are You Sure?')"><i class="fa fa-trash"></i></button>

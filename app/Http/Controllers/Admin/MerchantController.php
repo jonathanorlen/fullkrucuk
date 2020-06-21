@@ -24,6 +24,7 @@ class MerchantController extends Controller
     public function update(Request $request, $id)
     {   
         $data['status'] = $request->status;
+        $data['message'] = ($request->status == 1)?'':$request->message;
         $db = Merchant::where('id',$id)->update($data);
         return redirect()->route('merchant.index');
     }

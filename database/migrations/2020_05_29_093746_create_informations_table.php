@@ -16,7 +16,7 @@ class CreateInformationsTable extends Migration
         Schema::create('informations', function (Blueprint $table) {
             $table->id();
             $table->text('merchant_id');
-            $table->string('info');
+            $table->string('info')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

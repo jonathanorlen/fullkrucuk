@@ -38,4 +38,12 @@ class Merchant extends Model
     public function category(){
         return $this->belongsTo(\App\Category::class,'category_id','id');
     }
+
+    public function reviews(){
+        return $this->hasMany(\App\Krucuk_model\Review::class,'merchant_id', 'id');
+    }
+
+    // public function scopeReviewWhere($query, $rating) {
+    //     return $query->where(round($merchant->reviews->sum('rating') / $merchant->reviews->count()))
+    // }
 }

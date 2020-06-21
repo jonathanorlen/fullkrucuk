@@ -17,6 +17,7 @@ use App\Krucuk_model\Gallery;
 use App\Krucuk_model\Information;
 use App\Krucuk_model\Review;
 use Session;
+use DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 
@@ -29,7 +30,7 @@ class KrucukController extends Controller
         $data['categories'] = Category::where('status',1)
                             ->get();
         $data['banners']    = Banner::where('status',1)->get();
-        $data['merchants'] = Merchant::with(['category'])
+        $data['merchants']  = Merchant::with(['category'])
                             ->where('status',1)
                             ->take(8)
                             ->get();
@@ -42,25 +43,64 @@ class KrucukController extends Controller
         $data['informations']   = Information::where('merchant_id',$id)->first();
         $data['galleries']      = Gallery::where('merchant_id',$id)->take(5)->get();
         $data['reviews']        = Review::with(['user'])->where('merchant_id',$id)->get();
-        $data['total_rate']     = round($data['reviews']->sum('rating') / $data['reviews']->count());
+        $data['total_rate']     = ($data['reviews']->count() != 0)?round($data['reviews']->sum('rating') / $data['reviews']->count()):'';
         $data['cek_review']     = (Auth::user())?Review::where('user_id',Auth::user()->id)->first():'';
         return view('pages.krucuk.detail',$data);
     }
 
-    public function category($slug){
-        $data['category'] = Category::where('slug',$slug)
-                            ->first();
-        $data['merchants'] = Merchant::with(['category'])
-                            ->where('category_id',$data['category']->id)
-                            ->take(8)
-                            ->get();
+    public function category(Request $req, $slug){
+        $data['category']   = Category::where('slug',$slug)
+                                ->first();
+        $merchant           = Merchant::with(['category'])
+                                ->selectRaw('merchants.id, merchants.place, merchants.price, merchants.cover, substr(" - ", merchants.price) as harga,round(sum(reviews.rating)/count(reviews.rating)) as rating')
+                                ->leftJoin('reviews','merchants.id','=','reviews.merchant_id')
+                                ->where('category_id',$data['category']->id)
+                                ->groupBy('merchants.id')
+                                ->take(8)
+                                ->get();
+        
+        if($req->minimun){
+            $merchant = $merchant->where('harga[0]','>=',$req->minimun);
+        }
+
+        if($req->maksimum){
+            $merchant = $merchant->where('harga[0]','<=',$req->maksimum);
+        }
+
+        if($req->rating){
+            $merchant = $merchant->whereIn('rating',$req->rating);
+        }
+
+        $data['merchants'] = $merchant;
         return view('pages.krucuk.category',$data);
     }
 
     public function search(Request $request){
         $category = Category::where('slug', $request->category)->first();
-        $data['merchants'] = Merchant::where('place','like',"%".$request->search."%")
-                            ->get();
+        $merchant           = Merchant::with(['category'])
+                                ->selectRaw('merchants.id, merchants.place, merchants.price, merchants.cover, substr(" - ", merchants.price) as harga,round(sum(reviews.rating)/count(reviews.rating)) as rating')
+                                ->leftJoin('reviews','merchants.id','=','reviews.merchant_id')
+                                ->where('place','like',"%".$request->search."%")
+                                ->groupBy('merchants.id')
+                                ->take(8)
+                                ->get();
+        if($request->minimun){
+            $merchant = $merchant->where('harga[0]','>=',$request->minimun);
+        }
+
+        if($request->maksimum){
+            $merchant = $merchant->where('harga[0]','<=',$request->maksimum);
+        }
+
+        if($request->rating){
+            $merchant = $merchant->whereIn('rating',$request->rating);
+        }
+
+        if($request->category){
+            $merchant = $merchant->where('category_id',$request->category);
+        }
+
+        $data['merchants'] = $merchant;
         $data['categories'] = Category::get();
         return view('pages.krucuk.search',$data);
     }

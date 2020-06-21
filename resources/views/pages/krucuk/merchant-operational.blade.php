@@ -1,6 +1,9 @@
 @extends('layouts.krucuk')
 @section('content')
 <div class="container">
+    @if ($merchant->status == 0)
+        @include('pages.krucuk.TheAlert')
+    @endif
     <div class="row">
         @include('pages.krucuk.merchant-navbar')
         <div class="col-md-8">

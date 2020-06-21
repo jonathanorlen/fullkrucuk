@@ -8,5 +8,5 @@ class Merchant extends Model
 {   
     protected $table = 'merchants';
 
-    protected $fillable = ['name', 'password', 'email','place','address','phone'];
+    protected $fillable = ['name', 'password', 'email','place','address','phone','message'];
 }

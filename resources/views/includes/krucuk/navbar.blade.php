@@ -1,12 +1,12 @@
 <nav class="navbar navbar-expand-lg navbar-light mb-4 navbar-fixed-top navbar-inverse">
     <div class="container">
-        <a class="navbar-brand d-block d-sm-none" href="{{url('/')}}"><img src="logo.png" width="150px"></a>
+        <a class="navbar-brand d-block d-sm-none" href="{{url('/')}}"><img src="{{url('logo.png')}}" width="150px"></a>
         <div class="col-md-3 d-none d-md-block">
-            <a class="navbar-brand" href="#"><img src="logo.png" width="150px"></a>
+            <a class="navbar-brand" href="{{route('index')}}"><img src="{{url('logo.png')}}" width="150px"></a>
         </div>
         <div class="col-md-6 d-none d-md-block">
             <form action="{{route('search')}}" method="GET">
-                <input class="form-control search-form col-md-12 col-6" type="input" name="search" placeholder="Search Restoran"
+                <input class="form-control search-form col-md-12 col-6" type="input" name="search" value="{{Request::get('search')}}" placeholder="Search Restoran"
                     aria-label="Search">
             </form>
         </div>
@@ -28,7 +28,7 @@
                         Panel
                     </a>
                 @else
-                    <a href="{{route('merchant-setting')}}" class="btn btn-login my-2 my-sm-0 mr-2 ml-auto rounded" type="submit">
+                    <a href="{{route('user-comment')}}" class="btn btn-login my-2 my-sm-0 mr-2 ml-auto rounded" type="submit">
                         Setting
                     </a>
                 @endif

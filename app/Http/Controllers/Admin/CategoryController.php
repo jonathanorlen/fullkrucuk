@@ -61,7 +61,7 @@ class CategoryController extends Controller
             $name = 'cover'.time();
             $extension = $file->getClientOriginalExtension();
             $newName = $name.'.'.$extension;
-            $path = $request->file('cover')->storeAs('public/galleries',$newName);
+            $path = $request->file('cover')->storeAs('public/cover',$newName);
             $data['cover'] = $newName;
             Storage::delete('public/cover',$request->cover_lama);
         }

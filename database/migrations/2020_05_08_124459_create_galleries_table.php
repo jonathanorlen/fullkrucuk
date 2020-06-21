@@ -16,7 +16,7 @@ class CreateGalleriesTable extends Migration
         Schema::create('galleries', function (Blueprint $table) {
             $table->id();
             $table->integer('merchant_id');
-            $table->text('image');
+            $table->string('image',100);
             $table->enum('status', ['1', '0'])->default('1');
             $table->timestamps();
             $table->softDeletes();

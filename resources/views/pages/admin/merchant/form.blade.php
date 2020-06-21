@@ -18,7 +18,6 @@
                 <div class="col-12 col-md-12 col-lg-12">
                     <div class="card">
                          <form action="{{route('merchant.update',$item->id)}}" method="POST">
-
                             {{ method_field('PUT') }}
                             @csrf
                         <div class="card-body">
@@ -40,6 +39,10 @@
                                     <small class="text-danger">{{$message}}</small>
                                 @enderror
                             </div>
+                            <div class="form-group" id="status">
+                                <label class="d-block">Reason</label>
+                                <input type="text" name="message" class="form-control" value="{{$item->message}}">
+                            </div>
                             <div class="card-footer text-right">
                                 <button type="submit" class="btn btn-primary">Submit</button>
                             </div>
@@ -52,3 +55,24 @@
     </section>
 </div>
 @endsection
+
+@push('addon-script')
+    <script>
+        let status = $("input[type=radio][name=status]:checked").val()
+        $(document).ready(function() {
+            if(status == 1){
+                $("#status").hide()
+            }
+        })
+
+        $('input[type=radio][name=status]').change(function() {
+            let status = $("input[type=radio][name=status]:checked").val()
+            console.log(status)
+            if(status == 1){
+                $("#status").hide()
+            } else {
+                $("#status").show()
+            }
+        })
+    </script>
+@endpush

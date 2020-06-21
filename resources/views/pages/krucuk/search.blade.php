@@ -32,13 +32,13 @@
                     <div class="col-md-6 p-1">
                         <div class="form-group text-center">
                             <label for="Minimum">Minimum</label>
-                            <input type="text" name="minimum" class="form-control" placeholder="Minimum" id="Minimum">
+                            <input type="text" name="minimun" class="form-control" placeholder="Minimum" id="Minimum">
                         </div>
                     </div>
                     <div class="col-md-6 p-1 text-center">
                         <div class="form-group">
-                            <label for="Maximum">Maxsimum</label>
-                            <input type="text" name="maximum" class="form-control" placeholder="Maksimum" id="Maksimum">
+                            <label for="Maximum">Maksimum</label>
+                            <input type="text" name="maksimum" class="form-control" placeholder="Maksimum" id="Maksimum">
                         </div>
                     </div>
                 </div>
@@ -46,22 +46,19 @@
                 <div><b>Rating</b></div>
                 <div class="row">
                     <div class="col-md-12">
-                        <input type="checkbox" name="rating"> <i class="fas fa-star"></i>
+                        <input type="checkbox" name="rating[]" value="1" {{(Request::get('rating'))?(in_array(1,Request::get('rating')))?'checked':'':''}}> <i class="fas fa-star"></i>
                     </div>
                     <div class="col-md-12">
-                        <input type="checkbox" name="rating"> <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        <input type="checkbox" name="rating[]" value="2" {{(Request::get('rating'))?(in_array(2,Request::get('rating')))?'checked':'':''}}> <i class="fas fa-star"></i><i class="fas fa-star"></i>
                     </div>
                     <div class="col-md-12">
-                        <input type="checkbox" name="rating"> <i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                            class="fas fa-star"></i>
+                        <input type="checkbox" name="rating[]" value="3" {{(Request::get('rating'))?(in_array(3,Request::get('rating')))?'checked':'':''}}> <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                     </div>
                     <div class="col-md-12">
-                        <input type="checkbox" name="rating"> <i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                            class="fas fa-star"></i><i class="fas fa-star"></i>
+                        <input type="checkbox" name="rating[]" value="4" {{(Request::get('rating'))?(in_array(4,Request::get('rating')))?'checked':'':''}}> <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                     </div>
                     <div class="col-md-12">
-                        <input type="checkbox" name="rating"> <i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                            class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        <input type="checkbox" name="rating[]" value="5" {{(Request::get('rating'))?(in_array(5,Request::get('rating')))?'checked':'':''}}> <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                     </div>
                 </div>
                 <br>
@@ -86,9 +83,12 @@
                 </div>
                 <div class="card-tit">{{$merchant->place}}</div>
                 <div class="card-place">{{$merchant->address}}</div>
-                <div class="card-detail-category">
-                    {{isset($merchant->category->title)?$merchant->category->title:''}}</div>
-                <div class="price">Rp. 25.000-100.000</div>
+                <div class="card-place">
+                    @for ($i = 0; $i < $merchant->rating; $i++)
+                        <i class="fas fa-star"></i>
+                    @endfor
+                </div>
+                <div class="price">Rp. {{$merchant->price}}</div>
             </a>
             @empty
             <h2>Restoran Tidak Ada</h2>

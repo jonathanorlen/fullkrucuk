@@ -19,6 +19,9 @@
 @endpush
 @section('content')
 <div class="container">
+    @if ($merchant->status == 0)
+        @include('pages.krucuk.TheAlert')
+    @endif
     <form action="{{route('merchant-setting-update')}}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="row">

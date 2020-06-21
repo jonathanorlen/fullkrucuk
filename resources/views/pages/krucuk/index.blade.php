@@ -152,7 +152,7 @@
                     @foreach ($categories as $category)
                     <div class="col-5 col-md-2 col-sm-12 mr-md-auto mr-sm-2 mr-2 mt-3 p-sm-0 p-md-1 p-0">
                          <a href="{{route('category',$category->slug)}}">
-                              <div class="card-category" style="background-image: url({{Storage::url('public/cover/'.$category->cover)}});background: grey">
+                              <div class="card-category" style="background-image:grey;background-image: url({{Storage::url('public/cover/'.$category->cover)}})">
                                    {{$category->title}}
                               </div>
                          </a>

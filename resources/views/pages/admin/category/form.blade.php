@@ -25,11 +25,11 @@
                             @endphp
                             @csrf
                         <div class="card-body">
+                            @if ($item->cover)
+                                <img src="{{Storage::url('public/cover/'.$item->cover)}}" alt="" width="300px">
+                            @endif
                             <div class="form-group">
-                                <label>Banner</label>
-                                @if (isset($item) && $item->cover)
-                                    <img src="{{Storage::url('public/cover'.$item->cover)}}" alt="">
-                                @endif
+                                <label>Cover</label>
                                 <input type="file" name="cover" id="title" class="form-control">
                                 <input type="hidden" name="cover_lama" value="{{isset($item->cover)?$item->cover:''}}">
                                 @error('cover')

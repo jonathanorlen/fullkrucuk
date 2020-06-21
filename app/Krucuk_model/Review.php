@@ -13,4 +13,8 @@ class Review extends Model
     public function user(){
         return $this->belongsTo(\App\User::class);
     }
+
+    public function merchant(){
+        return $this->belongsTo(\App\Krucuk_model\Merchant::class,'merchant_id','id');
+    }
 }

@@ -27,8 +27,8 @@
   </div>
 
   <!-- General JS Scripts -->
-  @stack('prepend-style')
+  @stack('prepend-script')
   @include('includes.admin.script')
-  @stack('addon-style')
+  @stack('addon-script')
 </body>
 </html>

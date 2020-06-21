@@ -13,9 +13,9 @@
             </li>
             <li class="menu-header">Content</li>
             <li class="{{Request::is('admin/category*')?'active':''}}"><a class="nav-link" href="{{url('admin/category/')}}"><i class="far fa-square"></i> <span>Kategori</span></a></li>
-            <li class="{{Request::is('admin/user*')?'active':''}}"><a class="nav-link" href="{{url('admin/user/')}}"><i class="far fa-square"></i> <span>User</span></a></li>
-            <li class="{{Request::is('admin/admin*')?'active':''}}"><a class="nav-link" href="{{url('admin/admin/')}}"><i class="far fa-square"></i> <span>Admin</span></a></li>
-            <li class="{{Request::is('admin/merchant*')?'active':''}}"><a class="nav-link" href="{{url('admin/merchant/')}}"><i class="far fa-square"></i> <span>Merchant</span></a></li>
+            <li class="{{Request::is('admin/user*')?'active':''}}"><a class="nav-link" href="{{url('admin/user/')}}"><i class="fas fa-users"></i> <span>User</span></a></li>
+            <li class="{{Request::is('admin/admin*')?'active':''}}"><a class="nav-link" href="{{url('admin/admin/')}}"><i class="far fa-user"></i> <span>Admin</span></a></li>
+            <li class="{{Request::is('admin/merchant*')?'active':''}}"><a class="nav-link" href="{{url('admin/merchant/')}}"><i class="fas fa-store"></i> <span>Merchant</span></a></li>
             <li class="{{Request::is('admin/banner*')?'active':''}}"><a class="nav-link" href="{{url('admin/banner/')}}"><i class="far fa-square"></i> <span>Banner</span></a></li>
             {{-- <li class="{{Request::is('admin/comment*')?'active':''}}"><a class="nav-link" href="blank.html"><i class="far fa-square"></i> <span>Komentar</span></a></li> --}}
         </ul>

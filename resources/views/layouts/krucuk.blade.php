@@ -21,7 +21,6 @@
 		@yield('content')
 	</section>
      @include('includes.krucuk.footer')
-
 	@stack('prepend-script')
 	@include('includes.krucuk.script')
 	@stack('post-script')

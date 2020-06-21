@@ -215,6 +215,25 @@
         margin-top: 4px;
         margin-left: 12px;
     }
+    .fa-star{
+        color: #FFBF23;
+    }
+    .float{
+	position:fixed;
+	width:60px;
+	height:60px;
+	bottom:20px;
+	right:20px;
+	background-color:#F95A37;
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+	box-shadow: 2px 2px 3px #999;
+    }
+
+    .my-float{
+	    margin-top:22px;
+    }
 </style>
 @endpush
 @section('content')
@@ -249,7 +268,7 @@
             </div>
             <p class="menu">Menu : </p>
             <div class="col col-md-12 p-0 mb-4">
-                <div class="rasio1" style="background-image: url('Finpro/Coffee Toffee/coffee6.jpg');"
+                <div class="rasio1" style="background-image: url({{Storage::url('galleries/'.$merchant->menu)}});"
                     style="padding-top: 30%;"></div>
             </div>
 
@@ -357,18 +376,11 @@
         @foreach ($reviews as $review)
         <div class="col-md-12">
             <p class="name">{{$review->user->name}} | {{\Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $review->user->created_at)->format('Y-m-d')}}</p>
-            <fieldset class="rating">
-                <input type="radio" id="star5" name="rating" value="5" {{($review->rating == '5')?'checked':''}} disabled /><label class="full" for="star5"
-                    title="Awesome - 5 stars"></label>
-                <input type="radio" id="star4" name="rating" value="4" {{($review->rating == '4')?'checked':''}} disabled /><label class="full" for="star4"
-                    title="Pretty good - 4 stars"></label>
-                <input type="radio" id="star3" name="rating" value="3" {{($review->rating == '3')?'checked':''}} disabled /><label class="full" for="star3"
-                    title="Meh - 3 stars"></label>
-                <input type="radio" id="star2" name="rating" value="2" {{($review->rating == '2')?'checked':''}} disabled /><label class="full" for="star2"
-                    title="Kinda bad - 2 stars"></label>
-                <input type="radio" id="star1" name="rating" value="1" {{($review->rating == '1')?'checked':''}} disabled /><label class="full" for="star1"
-                    title="Sucks big time - 1 star"></label>
-            </fieldset>
+            <div class="row pl-3">
+                @for ($i = 0; $i < $review->rating; $i++)
+                <i class="fa fa-star"></i>
+                @endfor
+            </div>
         </div>
         <div class="col-md-12">
             {{$review->review}}
@@ -377,4 +389,66 @@
         @endforeach
     </div>
 </div>
+<a href="#" class="float" style="bottom: 90px">
+    <i class="fa fa-plus my-float"></i>
+</a>
+<a href="#" class="float" id="listRes">
+    <i class="fa fa-list my-float"></i>
+</a>
+
+<style>
+    .main-nav {
+display: none;
+opacity: 0;
+font-family: sans-serif;
+position: fixed;
+bottom: 90px;
+right: 90px;
+transition: opacity 250ms;
+}
+.main-nav.active {
+display: block;
+opacity: 1;
+transition: opacity 250ms;
+}
+.main-nav > ul {
+width: 130%;
+display: block;
+list-style: none;
+margin: 0;
+padding: 0;
+background-color: white;
+box-shadow: 2px 2px 8px #777;
+border-radius: 3px 3px 33.5px 3px;
+}
+.main-nav > ul > li > a {
+margin:10px;
+background: grey;
+text-decoration: none;
+display: block;
+font-weight: 200;
+padding: 12px 80px 12px 12px;
+color: black;
+}
+.main-nav > ul > li > a:hover {
+font-weight: 400;
+}
+</style>
+<div class="main-nav col-md-3 col-12" id="main-nav">
+    <ul>
+      <li><a href="#">Degree Programs</a></li>
+      <li><a href="#">Admissions</a></li>
+      <li><a href="#">Alumni & Friends</a></li>
+      <li><a href="#">Campus Community</a></li>
+      <li><a href="#">Parents</a></li>
+      <li><a href="#">Account Login</a></li>
+    </ul>
+  </div>
 @endsection
+@push('post-script')
+  <script>
+    $('#listRes').click(function() {
+        $('.main-nav').toggleClass('active');
+    });
+</script>
+@endpush

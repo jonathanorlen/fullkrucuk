@@ -18,6 +18,7 @@ Auth::routes();
 
 
 Route::get('/', 'Web\KrucukController@index')->name('index');
+Route::get('/test/{slug}', 'Web\test@index')->name('test');
 Route::get('/detail/{id}', 'Web\KrucukController@detail')->name('detail');
 Route::get('/search', 'Web\KrucukController@search')->name('search');
 Route::get('/category/{slug}', 'Web\KrucukController@category')->name('category');
@@ -31,6 +32,7 @@ Route::post('/register-merchant/create', 'Web\KrucukController@registerMerchantC
 
 Route::prefix('merchant')
      ->namespace('Web')
+     ->middleware(['auth'])
      ->group(function(){
           Route::get('/setting','MerchantController@setting')->name('merchant-setting');
           Route::post('/setting-update','MerchantController@settingUpdate')->name('merchant-setting-update');
@@ -43,6 +45,14 @@ Route::prefix('merchant')
           Route::get('/gallery-delete/{id}','MerchantController@galleryDelete')->name('merchant-gallery-delete');
           Route::get('/menu','MerchantController@menu')->name('merchant-menu');
           Route::post('/menu-update','MerchantController@menuUpdate')->name('merchant-menu-update');
+     });
+
+Route::prefix('user')
+     ->namespace('Web')
+     ->middleware(['auth'])
+     ->group(function(){
+          Route::get('/comment','UserController@comment')->name('user-comment');
+          // Route::post('/comment-update','UserController@commentUpdate')->name('merchant-setting-update');
      });
 
 Route::prefix('admin')
